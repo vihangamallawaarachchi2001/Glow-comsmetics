@@ -1,0 +1,142 @@
+products
+[
+    {
+        "name": "HydraGlow Face Cream",
+        "category": "Skincare",
+        "price": 25.99,
+        "stock": 50,
+        "salesCount": 120,
+        "views": 300,
+        "cartAdditions": 50,
+        "replenishmentThreshold": 0.2,
+        "autoReplenish": true,
+        "criticalStock": 10,
+        "salesLastMonth": [30, 40, 50]
+    },
+    {
+  "name": "Revive Shampoo",
+  "category": "Haircare",
+  "price": 15.49,
+  "stock": 35,
+  "salesCount": 80,
+  "views": 210,
+  "cartAdditions": 35,
+  "replenishmentThreshold": 0.3,
+  "autoReplenish": true,
+  "criticalStock": 8,
+  "salesLastMonth": [25, 30, 35]
+},
+{
+  "name": "Bold Red Lipstick",
+  "category": "Cosmetics",
+  "price": 18.99,
+  "stock": 70,
+  "salesCount": 150,
+  "views": 500,
+  "cartAdditions": 75,
+  "replenishmentThreshold": 0.4,
+  "autoReplenish": false,
+  "criticalStock": 15,
+  "salesLastMonth": [40, 50, 60]
+},
+{
+  "name": "Shiny Gold Nail Polish",
+  "category": "Cosmetics",
+  "price": 9.99,
+  "stock": 100,
+  "salesCount": 250,
+  "views": 350,
+  "cartAdditions": 110,
+  "replenishmentThreshold": 0.5,
+  "autoReplenish": true,
+  "criticalStock": 25,
+  "salesLastMonth": [60, 70, 80]
+}
+,
+{
+  "name": "Smooth Touch Body Lotion",
+  "category": "Skincare",
+  "price": 12.99,
+  "stock": 40,
+  "salesCount": 60,
+  "views": 180,
+  "cartAdditions": 40,
+  "replenishmentThreshold": 0.15,
+  "autoReplenish": false,
+  "criticalStock": 12,
+  "salesLastMonth": [20, 25, 30]
+}
+,
+{
+  "name": "Purifying Clay Face Mask",
+  "category": "Skincare",
+  "price": 22.49,
+  "stock": 30,
+  "salesCount": 110,
+  "views": 400,
+  "cartAdditions": 65,
+  "replenishmentThreshold": 0.3,
+  "autoReplenish": true,
+  "criticalStock": 8,
+  "salesLastMonth": [40, 45, 50]
+}
+,
+{
+  "name": "Luxe Hair Serum",
+  "category": "Haircare",
+  "price": 19.99,
+  "stock": 20,
+  "salesCount": 60,
+  "views": 120,
+  "cartAdditions": 15,
+  "replenishmentThreshold": 0.4,
+  "autoReplenish": true,
+  "criticalStock": 5,
+  "salesLastMonth": [10, 15, 20]
+}
+,{
+  "name": "Euphoria Perfume",
+  "category": "Fragrance",
+  "price": 45.00,
+  "stock": 60,
+  "salesCount": 300,
+  "views": 800,
+  "cartAdditions": 150,
+  "replenishmentThreshold": 0.25,
+  "autoReplenish": true,
+  "criticalStock": 20,
+  "salesLastMonth": [80, 100, 120]
+}
+,
+{
+  "name": "Gentle Foam Cleanser",
+  "category": "Skincare",
+  "price": 10.99,
+  "stock": 80,
+  "salesCount": 130,
+  "views": 250,
+  "cartAdditions": 70,
+  "replenishmentThreshold": 0.1,
+  "autoReplenish": false,
+  "criticalStock": 15,
+  "salesLastMonth": [40, 50, 60]
+}
+,
+,
+{
+  "name": "Nourish Hair Conditioner",
+  "category": "Haircare",
+  "price": 14.99,
+  "stock": 120,
+  "salesCount": 220,
+  "views": 500,
+  "cartAdditions": 130,
+  "replenishmentThreshold": 0.2,
+  "autoReplenish": true,
+  "criticalStock": 30,
+  "salesLastMonth": [60, 70, 90]
+}
+
+
+
+]
