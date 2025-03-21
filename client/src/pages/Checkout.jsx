@@ -208,8 +208,7 @@ const Checkout = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-neutral-50">
-        <Navbar user={user} setUser={setUser} loading={false} />
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-8 text-center">
             <h2 className="text-2xl font-bold text-neutral-900 mb-2">Your cart is empty</h2>
@@ -222,14 +221,12 @@ const Checkout = () => {
             </Link>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={false} />
+    <div className="min-h-screen">
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
@@ -606,8 +603,6 @@ const Checkout = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   )
 }

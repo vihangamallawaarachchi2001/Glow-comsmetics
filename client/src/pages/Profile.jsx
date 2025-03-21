@@ -580,8 +580,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={false} />
+    <div className="min-h-screen ">
 
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-[250px_1fr] gap-8">
@@ -647,7 +646,6 @@ const Profile = () => {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

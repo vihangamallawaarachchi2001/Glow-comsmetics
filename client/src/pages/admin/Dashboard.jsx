@@ -446,8 +446,8 @@ const Dashboard = () => {
           
         )}
 
-<TrendingProductsTable />
-<AdminTopSellingItems />
+        <TrendingProductsTable />
+        <AdminTopSellingItems />
       </div>
     </AdminLayout>
   )

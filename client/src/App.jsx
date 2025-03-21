@@ -1,17 +1,14 @@
 import "./App.css";
 
 import React from "react";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router, useLocation } from "react-router-dom";
 import { SnackbarProvider } from "notistack";
+
+// Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import TrendingItems from "./components/TrendingItems";
-import TopSellingItems from "./components/TopSellingItems";
-import CategoriesBanner from "./components/CategoriesBanner";
-import Recommendations from "./components/Recommendations";
-import Newsletter from "./components/Newsletter";
-import Testimonials from "./components/Testimonials";
+
+// Pages
 import Landing from "./pages/Landing";
 import About from "./pages/About";
 import Contact from "./pages/Contactus";
@@ -25,56 +22,75 @@ import SingleProduct from "./pages/SingleProduct";
 import Payment from "./pages/Payment";
 import OrderSuccess from "./pages/OrderSuccess";
 import Test from "./pages/test";
+
+// Admin Pages
 import Dashboard from "./pages/admin/Dashboard";
+
+// Reviews
 import MainReview from "./pages/reviews/MainReview";
 import CreateReview from "./pages/reviews/CreateReview";
+
+// FAQs
 import MainFAQ from "./pages/faqs/MainFAQ";
 import CreateFAQ from "./pages/faqs/CreateFAQ";
+import ManageReview from "./pages/reviews/ManageReview";
+import EditReview from "./pages/reviews/EditReview";
+
+const AppLayout = () => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
+  return (
+    <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      {!isAdminRoute && <Navbar />}
+
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contactus" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/product" element={<SingleProduct />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/order-success" element={<OrderSuccess />} />
+        <Route path="/test" element={<Test />} />
+
+        {/* Admin Route */}
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/manage-reviews" element={<ManageReview />} />
+
+        {/* Review Pages */}
+        <Route path="/reviews" element={<MainReview />} />
+        <Route path="/create-review" element={<CreateReview />} />
+        <Route path="/admin/edit-review/:id" element={<EditReview />} />
+
+        {/* FAQ Pages */}
+        <Route path="/faqs" element={<MainFAQ />} />
+        <Route path="/create-faq" element={<CreateFAQ />} />
+      </Routes>
+
+      {!isAdminRoute && <Footer />}
+    </div>
+  );
+};
 
 const App = () => {
   return (
     <SnackbarProvider>
       <Router>
-        {/* Main Layout Wrapper */}
-        <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
-          {/* Navigation Bar */}
-          <Navbar />
-
-          {/* Routes for Different Pages */}
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contactus" element={<Contact />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/product" element={<SingleProduct />} />
-            <Route path="/payment" element={<Payment />} />
-            <Route path="/order-success" element={<OrderSuccess />} />
-            <Route path="/admin" element={<Dashboard />} />
-            <Route path="/test" element={<Test />} />
-
-
-            <Route path="/reviews" element={<MainReview />} />
-            <Route path="/create-review" element={<CreateReview />} />
-
-            <Route path="/faqs" element={<MainFAQ />} />
-            <Route path="/create-faq" element={<CreateFAQ />} />
-
-          </Routes>
-
-          {/* Footer Section */}
-          <Footer />
-        </div>
+        <AppLayout />
       </Router>
     </SnackbarProvider>
   );
 };
 
 export default App;
+
 
 
 // const VAPID_PUBLIC_KEY =

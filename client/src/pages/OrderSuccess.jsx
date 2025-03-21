@@ -97,8 +97,7 @@ const OrderSuccess = () => {
 
   if (loading || !orderDetails) {
     return (
-      <div className="min-h-screen bg-neutral-50">
-        <Navbar user={user} setUser={setUser} loading={loading} />
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="animate-pulse bg-white rounded-lg shadow-sm p-6 max-w-3xl mx-auto">
             <div className="h-8 bg-neutral-200 rounded w-1/2 mx-auto mb-6"></div>
@@ -110,14 +109,12 @@ const OrderSuccess = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={false} />
+    <div className="min-h-screen">
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
@@ -254,7 +251,6 @@ const OrderSuccess = () => {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

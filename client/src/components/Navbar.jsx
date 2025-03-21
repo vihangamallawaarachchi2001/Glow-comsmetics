@@ -122,8 +122,13 @@ const Navbar = () => {
               <div className="flex flex-col gap-2 w-36 py-3 px-5">
                 {!isLogged ? (
                   <div>
-                    <p className="cursor-pointer hover:text-black" onClick={toggleSignup}>Signup</p>
+                    <Link to="/signup">
+                      <p className="cursor-pointer hover:text-black" onClick={toggleSignup}>Signup</p>
+                    </Link>
+
+                    <Link to="/login">
                     <p className="cursor-pointer hover:text-black" onClick={toggleLogin}>Login</p>
+                    </Link>
                   </div>
                 ) : (
                   <div>

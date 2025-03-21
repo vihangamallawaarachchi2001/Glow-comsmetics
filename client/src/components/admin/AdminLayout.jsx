@@ -75,6 +75,10 @@ const AdminLayout = ({ children }) => {
     { name: "Products", href: "/admin/products", icon: Package },
     { name: "Orders", href: "/admin/orders", icon: ShoppingCart },
     { name: "Analytics", href: "/admin/analytics", icon: BarChart3 },
+
+    { name: "Manage Reviews", href: "/admin/manage-reviews", icon: Settings },
+    { name: "Manage FAQs", href: "/admin/manage-faqs", icon: Settings },
+
     { name: "Settings", href: "/admin/settings", icon: Settings },
   ]
 
@@ -98,7 +102,7 @@ const AdminLayout = ({ children }) => {
             {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
           <Link to="/" className="flex items-center">
-            <span className="text-xl font-bold text-primary">GLOW</span>
+            <span className="text-xl font-bold text-primary">RENORA</span>
             <span className="ml-2 text-sm font-medium text-neutral-500">Admin</span>
           </Link>
           <div className="relative">
@@ -120,7 +124,7 @@ const AdminLayout = ({ children }) => {
           {/* Sidebar header */}
           <div className="h-16 flex items-center justify-between px-4 border-b border-neutral-200">
             <Link to="/" className="flex items-center">
-              <span className="text-xl font-bold text-primary">GLOW</span>
+              <span className="text-xl font-bold text-primary">RENORA</span>
               <span className="ml-2 text-sm font-medium text-neutral-500">Admin</span>
             </Link>
             <button

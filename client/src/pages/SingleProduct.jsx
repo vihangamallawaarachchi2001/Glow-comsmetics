@@ -228,8 +228,7 @@ const SingleProduct = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-neutral-50">
-        <Navbar user={user} setUser={setUser} loading={loading} />
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-sm p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -728,7 +727,6 @@ const SingleProduct = () => {
         </section>
       </div>
 
-      <Footer />
     </div>
   )
 }
