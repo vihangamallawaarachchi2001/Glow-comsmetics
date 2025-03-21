@@ -1,18 +1,15 @@
+import React, { useState } from 'react';
 
-
-import { useState } from "react"
-
-const Newsletter = () => {
-  const [email, setEmail] = useState("")
-  const [subscribed, setSubscribed] = useState(false)
+const NewsLetter = () => {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Here you would typically send the email to your API
-    console.log("Subscribing email:", email)
-    setSubscribed(true)
-    setEmail("")
-  }
+    e.preventDefault();
+    console.log("Subscribing email:", email);
+    setSubscribed(true);
+    setEmail("");
+  };
 
   return (
     <section className="py-12 md:py-16 bg-gradient-to-r from-primary/10 to-primary/5">
@@ -29,21 +26,9 @@ const Newsletter = () => {
               <p className="text-sm">Check your inbox for a confirmation email and exciting offers.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email address"
-                required
-                className="flex-1 px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                Subscribe
-              </button>
+            <form onSubmit={handleSubmit}  className='w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3'>
+              <input className='w-full sm:flex-1 outline-none' type="email" placeholder='Enter Your Email Here!' required/>
+              <button type='submit' className='bg-black text-white text-xs px-10 py-4'>Subscribe</button>
             </form>
           )}
 
@@ -53,8 +38,7 @@ const Newsletter = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Newsletter
-
+export default NewsLetter;

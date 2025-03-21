@@ -1,9 +1,20 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import React from 'react';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from "react"
 import { CheckCircle, Users, Heart, Leaf } from "lucide-react"
+import aboutusimg from '../assets/aboutus.jpeg';
+import NewsLetter from '../components/Newsletter';
+import Title from '../components/homecomp/Title';
+
+
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
 
 const About = () => {
+  
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -41,26 +52,26 @@ const About = () => {
     {
       name: "Sarah Johnson",
       role: "Founder & CEO",
-      bio: "With over 15 years in the beauty industry, Sarah founded GLOW with a mission to create effective, ethical cosmetics for everyone.",
-      image: "/placeholder.svg?height=300&width=300",
+      bio: "With over 15 years in the beauty industry, Sarah founded Renora with a mission to create effective, ethical cosmetics for everyone.",
+      image: "https://images.pexels.com/photos/31244120/pexels-photo-31244120/free-photo-of-confident-woman-in-professional-attire-outdoors.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
       name: "Michael Chen",
       role: "Chief Product Officer",
       bio: "Michael leads our product development team, bringing his expertise in cosmetic chemistry to create innovative formulations.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.pexels.com/photos/2112723/pexels-photo-2112723.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
       name: "Emily Rodriguez",
       role: "Creative Director",
-      bio: "Emily oversees our brand identity and creative vision, ensuring that GLOW's aesthetic is as beautiful as our products.",
-      image: "/placeholder.svg?height=300&width=300",
+      bio: "Emily oversees our brand identity and creative vision, ensuring that Renora's aesthetic is as beautiful as our products.",
+      image: "https://images.pexels.com/photos/4467687/pexels-photo-4467687.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
       name: "David Kim",
       role: "Head of Sustainability",
       bio: "David ensures that our commitment to environmental responsibility is reflected in every aspect of our business.",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "https://images.pexels.com/photos/7460150/pexels-photo-7460150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
   ]
 
@@ -91,7 +102,7 @@ const About = () => {
     {
       year: "2015",
       title: "The Beginning",
-      description: "GLOW was founded with a simple mission: to create effective, ethical cosmetics for everyone.",
+      description: "Renora was founded with a simple mission: to create effective, ethical cosmetics for everyone.",
     },
     {
       year: "2017",
@@ -102,7 +113,7 @@ const About = () => {
     {
       year: "2019",
       title: "Going Global",
-      description: "GLOW expanded to international markets, bringing our products to beauty enthusiasts worldwide.",
+      description: "Renora expanded to international markets, bringing our products to beauty enthusiasts worldwide.",
     },
     {
       year: "2021",
@@ -117,97 +128,101 @@ const About = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={loading} />
+    <div>
+      <motion.div 
+        className='text-2xl pt-8' 
+        initial='hidden' 
+        whileInView='visible' 
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+        <h2 className='text-4xl font-bold'>Welcome to Renora – Where Science Meets Beauty</h2>
+      </motion.div>
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-pink-50 to-purple-50 py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl md:text-6xl">Our Story</h1>
-            <p className="mt-6 text-xl text-neutral-600">
-              We believe that beauty should be a source of confidence, not anxiety. Our mission is to create products
-              that enhance your natural beauty while being kind to your skin and the planet.
-            </p>
-          </div>
+      <motion.div 
+        className='my-10 flex flex-col md:flex-row gap-16' 
+        initial='hidden' 
+        whileInView='visible' 
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+        <img className='w-[500px] h-[600px]' src={aboutusimg} alt='' />
+        <div className='flex flex-col justify-center gap-6 md:w-2/4 text-gray-600'>
+          <p>Welcome to Renora, your destination for premium skincare that blends 
+            science, nature, and innovation. We are committed to offering high-quality
+            skincare solutions designed to nourish, protect, and enhance your natural 
+            beauty. Rooted in the heart of Nugegoda, Renora has quickly become a trusted
+            name for those seeking effective, dermatologist-approved products that cater 
+            to every skin type and concern.
+          </p>
+
+          <p>At Renora, we believe that skincare is more than just a routine—it’s a 
+            commitment to self-care and confidence. Our carefully crafted formulas 
+            harness the power of natural extracts, clinically proven ingredients, and 
+            cutting-edge skincare technology to deliver visible results. Whether you're 
+            looking for deep hydration, anti-aging solutions, or daily protection, our 
+            products are designed to bring out the best in your skin.
+          </p>
+
+          <b className='text-gray-800'>Our Mission</b>
+
+          <p>At Renora, our mission is to empower individuals through skincare by offering 
+            safe, effective, and innovative products that promote radiant and healthy skin. 
+            We are dedicated to transparency, sustainability, and customer satisfaction, ensuring 
+            that every product we create is backed by science and nature.
+          </p>
+
+          <p>Our goal is not just to meet expectations but to exceed them, providing skincare solutions 
+            that are dermatologist-tested, cruelty-free, and free from harsh chemicals. Whether you're new 
+            to skincare or a beauty enthusiast, Renora is here to help you achieve your glow with confidence.
+          </p>
         </div>
+      </motion.div>
 
-        {/* Curved divider */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 80" className="w-full h-auto">
-            <path
-              fill="#ffffff"
-              fillOpacity="1"
-              d="M0,32L80,42.7C160,53,320,75,480,74.7C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,80L1360,80C1280,80,1120,80,960,80C800,80,640,80,480,80C320,80,160,80,80,80L0,80Z"
-            ></path>
-          </svg>
-        </div>
-      </section>
+      <motion.div 
+        className='text-2xl py-4' 
+        initial='hidden' 
+        whileInView='visible' 
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+        <Title text1={'THE'} text2={' RENORA PROMISE '} />
+      </motion.div>
 
-      {/* Mission Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-neutral-900 mb-6">Our Mission</h2>
-              <p className="text-lg text-neutral-600 mb-6">
-                At GLOW, we're on a mission to transform the beauty industry by creating products that are not only
-                effective but also ethical and sustainable.
-              </p>
-              <p className="text-lg text-neutral-600 mb-6">
-                We believe that everyone deserves to feel beautiful in their own skin, without compromising their values
-                or the health of the planet.
-              </p>
-              <p className="text-lg text-neutral-600">
-                Our team of experts works tirelessly to develop formulations that deliver real results, using
-                ingredients that are ethically sourced and environmentally responsible.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
-                <img
-                  src="/placeholder.svg?height=600&width=600"
-                  alt="Our laboratory"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute top-1/4 -left-8 w-24 h-24 bg-pink-200 rounded-full opacity-60 blur-xl"></div>
-              <div className="absolute bottom-1/3 -right-10 w-32 h-32 bg-purple-200 rounded-full opacity-60 blur-xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-16 bg-neutral-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold text-neutral-900 mb-6">Our Values</h2>
-            <p className="text-lg text-neutral-600">
-              These core principles guide everything we do, from product development to customer service.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
-                <p className="text-neutral-600">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className='flex flex-col md:flex-row text-sm mb-20'>
+        {[
+          { title: '✨ Beyond Beauty', text: 'At Renora, we believe that skincare is more than just looking good—it’s about feeling confident, empowered, and radiant in your own skin. Our products are designed to restore, protect, and enhance your skin’s natural balance, ensuring long-term results, not just temporary fixes. Whether you are tackling dryness, acne, or signs of aging, Renora is here to support your skincare journey every step of the way.' },
+          { title: '🌱 Pure Ingredients', text: 'We’re committed to clean beauty that delivers. Every Renora product is formulated using high-performance botanicals, dermatologist-approved actives, and cutting-edge skincare technology. Our ingredients are: Sustainably sourced and ethically harvested, Free from parabens, sulfates, and harsh chemicals, Clinically tested for safety and effectiveness.' },
+          { title: '🌍 Brand That Puts You First', text: 'Your skincare should work for you, not against you. That’s why we provide: Personalized skincare solutions – products that cater to your unique skin type and concerns, Hassle-free shopping – fast delivery, flexible payments, and easy returns, Expert support – a team of skincare specialists ready to help you find your perfect match. At Renora, we don’t just sell skincare—we create a community of care, where beauty is personal, and everyone is welcome.' }
+        ].map((item, index) => (
+          <motion.div 
+            key={index} 
+            className='border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5'
+            initial='hidden' 
+            whileInView='visible' 
+            viewport={{ once: true }}
+            variants={fadeInVariant}
+          >
+            <b className='text-2xl'>{item.title}</b>
+            <p className='text-gray-600'>{item.text}</p>
+          </motion.div>
+        ))}
+      </div>
 
       {/* Team Section */}
-      <section className="py-16 bg-white">
+      <motion.div 
+        className='my-10 flex flex-col md:flex-row gap-16' 
+        initial='hidden' 
+        whileInView='visible' 
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+      <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold text-neutral-900 mb-6">Meet Our Team</h2>
             <p className="text-lg text-neutral-600">
-              The passionate individuals behind GLOW who are dedicated to revolutionizing the beauty industry.
+              The passionate individuals behind Renora who are dedicated to revolutionizing the beauty industry.
             </p>
           </div>
 
@@ -232,14 +247,22 @@ const About = () => {
           </div>
         </div>
       </section>
+      </motion.div>
 
       {/* Timeline Section */}
-      <section className="py-16 bg-neutral-50">
+      <motion.div 
+        className='' 
+        initial='hidden' 
+        whileInView='visible' 
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+      <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl font-bold text-neutral-900 mb-6">Our Journey</h2>
             <p className="text-lg text-neutral-600">
-              From humble beginnings to where we are today, this is the story of GLOW's evolution.
+              From humble beginnings to where we are today, this is the story of Renora's evolution.
             </p>
           </div>
 
@@ -271,34 +294,18 @@ const About = () => {
           </div>
         </div>
       </section>
+      </motion.div>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary/10 to-primary/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-neutral-900 mb-6">Join Our Beauty Revolution</h2>
-            <p className="text-lg text-neutral-600 mb-8">
-              Experience the difference that ethical, effective cosmetics can make in your beauty routine.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/products"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors"
-              >
-                Shop Our Products
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 border border-neutral-300 text-base font-medium rounded-md text-neutral-700 bg-white hover:bg-neutral-50 transition-colors"
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <motion.div 
+        className='' 
+        initial='hidden' 
+        whileInView='visible' 
+        viewport={{ once: true }}
+        variants={fadeInVariant}
+      >
+        <NewsLetter />
+      </motion.div>
 
-      <Footer />
     </div>
   )
 }

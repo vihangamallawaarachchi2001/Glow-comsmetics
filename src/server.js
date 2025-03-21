@@ -8,6 +8,10 @@ const dbConnection = require("./config/dbConfig");
 const userRoutes = require('./routes/user.routes');
 const productsRoute = require('./routes/products.routes');
 const ordersRoute = require('./routes/orders.routes');
+
+const reviewRoutes = require('./routes/review.routes');
+const faqRoutes = require('./routes/faq.routes');
+
 const cron = require("node-cron");
 const { adjustProductPricing, handleStockReplenishment, predictNextMonthSales } = require('./services/products.service');
 
@@ -39,6 +43,10 @@ app.use(morganMiddleware);
 
 // Routes setup
 app.use('/api', userRoutes);
+
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/faqs', faqRoutes);
+
 app.use('/api/product', productsRoute);
 app.use('/api/order', ordersRoute);
 // Save Subscription to Database

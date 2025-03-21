@@ -39,7 +39,7 @@ const TopSellingItems = () => {
 
   if (loading) {
     return (
-      <section className="py-12 md:py-16 bg-neutral-50">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Best Sellers</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -59,7 +59,7 @@ const TopSellingItems = () => {
 
   if (error && topProducts.length === 0) {
     return (
-      <section className="py-12 md:py-16 bg-neutral-50">
+      <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Best Sellers</h2>
           <p className="text-neutral-600">Unable to load top-selling products. Please try again later.</p>
@@ -69,7 +69,7 @@ const TopSellingItems = () => {
   }
 
   return (
-    <section className="py-12 md:py-16 bg-neutral-50">
+    <section className="py-12 md:py-16 ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold">Best Sellers</h2>

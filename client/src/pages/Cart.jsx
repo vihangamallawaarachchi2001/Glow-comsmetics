@@ -124,8 +124,7 @@ const Cart = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-neutral-50">
-        <Navbar user={user} setUser={setUser} loading={loading} />
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
@@ -136,15 +135,13 @@ const Cart = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   if (cartItems.length === 0) {
     return (
-      <div className="min-h-screen bg-neutral-50">
-        <Navbar user={user} setUser={setUser} loading={false} />
+      <div className="min-h-screen">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-sm p-8 text-center">
             <ShoppingBag className="h-16 w-16 mx-auto text-neutral-300 mb-4" />
@@ -159,14 +156,12 @@ const Cart = () => {
             </Link>
           </div>
         </div>
-        <Footer />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={false} />
+    <div className="min-h-screen">
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto">
@@ -318,7 +313,6 @@ const Cart = () => {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

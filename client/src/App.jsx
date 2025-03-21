@@ -1,19 +1,20 @@
 import "./App.css";
 
-// import { useState, useEffect } from "react";
+import React from "react";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { SnackbarProvider } from "notistack";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import TrendingItems from "./components/TrendingItems";
 import TopSellingItems from "./components/TopSellingItems";
 import CategoriesBanner from "./components/CategoriesBanner";
 import Recommendations from "./components/Recommendations";
-import Footer from "./components/Footer";
 import Newsletter from "./components/Newsletter";
 import Testimonials from "./components/Testimonials";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Landing from "./pages/Landing";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+import Contact from "./pages/Contactus";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Products from "./pages/Products";
@@ -25,6 +26,56 @@ import Payment from "./pages/Payment";
 import OrderSuccess from "./pages/OrderSuccess";
 import Test from "./pages/test";
 import Dashboard from "./pages/admin/Dashboard";
+import MainReview from "./pages/reviews/MainReview";
+import CreateReview from "./pages/reviews/CreateReview";
+import MainFAQ from "./pages/faqs/MainFAQ";
+import CreateFAQ from "./pages/faqs/CreateFAQ";
+
+const App = () => {
+  return (
+    <SnackbarProvider>
+      <Router>
+        {/* Main Layout Wrapper */}
+        <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+          {/* Navigation Bar */}
+          <Navbar />
+
+          {/* Routes for Different Pages */}
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contactus" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/product" element={<SingleProduct />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/order-success" element={<OrderSuccess />} />
+            <Route path="/admin" element={<Dashboard />} />
+            <Route path="/test" element={<Test />} />
+
+
+            <Route path="/reviews" element={<MainReview />} />
+            <Route path="/create-review" element={<CreateReview />} />
+
+            <Route path="/faqs" element={<MainFAQ />} />
+            <Route path="/create-faq" element={<CreateFAQ />} />
+
+          </Routes>
+
+          {/* Footer Section */}
+          <Footer />
+        </div>
+      </Router>
+    </SnackbarProvider>
+  );
+};
+
+export default App;
+
 
 // const VAPID_PUBLIC_KEY =
 //   "BDB1nMpC5HNjE87IY0Hm99QE_jsju4dkPjU7wX6qBA05PblvXRDZIaWr58RMvBtyo2onkd-hVeOAkNdK5aOZBU4";
@@ -94,7 +145,7 @@ import Dashboard from "./pages/admin/Dashboard";
 //   }
 // }
 
-function App() {
+//function App() {
   // const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
 
@@ -133,26 +184,26 @@ function App() {
   //   requestPermission();
   // }, []);
 
-  return (
-    <Router>
-      <Routes>
-        <Route element={<Landing />} path="/"/>
-        <Route element={<About />} path="/about"/>
-        <Route element={<Contact />} path="/contact"/>
-        <Route element={<Login />} path="/login"/>
-        <Route element={<Signup />} path="/signup"/>
-        <Route element={<Products />} path="/products"/>
-        <Route element={<Profile />} path="/profile"/>
-        <Route element={<Cart />} path="/cart"/>
-        <Route element={<Checkout />} path="/checkout"/>
-        <Route element={<SingleProduct />} path="/product"/>
-        <Route element={<Payment />} path="/payment"/>
-        <Route element={<OrderSuccess />} path="/order-success"/>
-        <Route element={<Dashboard />} path="/admin"/>
-        <Route element={<Test />} path="/test"/>
-      </Routes>
-    </Router>
-  );
-}
+  //return (
+  //  <Router>
+   //   <Routes>
+   //     <Route element={<Landing />} path="/"/>
+   //     <Route element={<About />} path="/about"/>
+    //    <Route element={<Contact />} path="/contact"/>
+    //    <Route element={<Login />} path="/login"/>
+  //      <Route element={<Signup />} path="/signup"/>
+  //      <Route element={<Products />} path="/products"/>
+  //      <Route element={<Profile />} path="/profile"/>
+ //       <Route element={<Cart />} path="/cart"/>
+ //       <Route element={<Checkout />} path="/checkout"/>
+  //      <Route element={<SingleProduct />} path="/product"/>
+ //       <Route element={<Payment />} path="/payment"/>
+ //       <Route element={<OrderSuccess />} path="/order-success"/>
+ //       <Route element={<Dashboard />} path="/admin"/>
+//        <Route element={<Test />} path="/test"/>
+//      </Routes>
+//    </Router>
+//  );
+//}
 
-export default App;
+//export default App;

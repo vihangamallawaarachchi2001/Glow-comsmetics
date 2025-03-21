@@ -1,12 +1,17 @@
 import CategoriesBanner from "../components/CategoriesBanner";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
+import AboutSimple from "../components/homecomp/AboutSimple";
+import Complaints from "../components/homecomp/Complaints";
+import OurPolicy from "../components/homecomp/OurPolicy";
+import Reviews from "../components/homecomp/reviews/Reviews";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Recommendations from "../components/Recommendations";
 import Testimonials from "../components/Testimonials";
 import TopSellingItems from "../components/TopSellingItems";
 import TrendingItems from "../components/TrendingItems";
+import { motion } from 'framer-motion';
 
 
 import { useState, useEffect } from "react";
@@ -119,18 +124,73 @@ function Landing() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={loading} />
+    <div>
       <main>
-        <Hero />
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.8 }} 
+          viewport={{ once: true }} 
+        >
+          <Hero />
+        </motion.div>
+
         {/* <TrendingItems /> */}
+
         <TopSellingItems />
+
         <CategoriesBanner />
+      
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <AboutSimple />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <Reviews />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+        <OurPolicy />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+       <Complaints />
+      </motion.div>
+    
         {user && <Recommendations user={user} />}
-        <Testimonials />
-        <Newsletter />
+
+        <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        viewport={{ once: true }}
+      >
+       <Newsletter />
+      </motion.div>
+
       </main>
-      <Footer />
+
     </div>
   );
 }

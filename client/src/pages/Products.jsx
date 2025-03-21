@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Filter, Search, ShoppingBag, Heart, ChevronDown, X, Sliders } from "lucide-react"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 
 const Products = () => {
   const [user, setUser] = useState(null)
@@ -135,11 +133,10 @@ const Products = () => {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
-      <Navbar user={user} setUser={setUser} loading={loading} />
+    <div className="min-h-screen">
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-pink-50 to-purple-50 py-12">
+      <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">Our Products</h1>
@@ -440,7 +437,6 @@ const Products = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }
