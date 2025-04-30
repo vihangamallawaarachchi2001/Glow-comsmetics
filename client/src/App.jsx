@@ -35,6 +35,7 @@ import MainFAQ from "./pages/faqs/MainFAQ";
 import CreateFAQ from "./pages/faqs/CreateFAQ";
 import ManageReview from "./pages/reviews/ManageReview";
 import EditReview from "./pages/reviews/EditReview";
+import ManageFAQ from "./pages/faqs/ManageFAQ";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -63,6 +64,7 @@ const AppLayout = () => {
         {/* Admin Route */}
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/manage-reviews" element={<ManageReview />} />
+        <Route path='/admin/manage-faqs' element={<ManageFAQ />} />
 
         {/* Review Pages */}
         <Route path="/reviews" element={<MainReview />} />
