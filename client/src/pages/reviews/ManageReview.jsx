@@ -348,6 +348,7 @@ const ManageReviews = () => {
         </Dialog>
       </Transition>
     </AdminLayout>
+    
   );
 };
 

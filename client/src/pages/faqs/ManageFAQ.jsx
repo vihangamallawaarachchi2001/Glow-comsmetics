@@ -155,7 +155,6 @@ const ManageFAQ = () => {
       <div className="px-6 py-4 bg-white min-h-screen w-full">
         <h1 className="text-2xl font-bold mb-6">Manage FAQs</h1>
 
-
         <div className="flex flex-wrap gap-4 mb-6">
           <input
             type="text"
