@@ -148,7 +148,6 @@ const EditReview = () => {
               <option value="Other">Other</option>
             </select>
           </div>
-
           {/* Rating */}
           <div>
             <label className="block text-sm font-medium">Rating</label>
