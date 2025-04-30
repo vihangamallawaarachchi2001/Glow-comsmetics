@@ -253,7 +253,6 @@ const ManageFAQ = () => {
                 ))}
               </tbody>
             </table>
-
             {/* Pagination */}
             <div className="flex justify-between items-center p-4 border-t border-gray-200">
               <button
