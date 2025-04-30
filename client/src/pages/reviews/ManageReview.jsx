@@ -4,9 +4,10 @@ import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { Dialog, Transition } from "@headlessui/react";
 import toast, { Toaster } from "react-hot-toast";
 import AdminLayout from "../../components/admin/AdminLayout";
-import { jsPDF } from 'jspdf';
-import autoTable from 'jspdf-autotable';
 
+// ✅ Correct jsPDF + autoTable import
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const ManageReviews = () => {
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,7 @@ const ManageReviews = () => {
   const [categoryFilter, setCategoryFilter] = useState("");
   const [ratingFilter, setRatingFilter] = useState("");
 
+  // ✅ CSV Download
   const downloadCSVReport = () => {
     if (!filteredReviews.length) {
       toast.error("No reviews to download.");
@@ -55,6 +57,7 @@ const ManageReviews = () => {
     document.body.removeChild(link);
   };
 
+  // ✅ PDF Download using autoTable
   const downloadPDFReport = () => {
     if (!filteredReviews.length) {
       toast.error("No reviews to download.");
@@ -74,7 +77,7 @@ const ManageReviews = () => {
       new Date(review.date).toLocaleDateString(),
     ]);
 
-    doc.autoTable({
+    autoTable(doc, {
       head: [tableColumn],
       body: tableRows,
       startY: 20,
@@ -88,9 +91,6 @@ const ManageReviews = () => {
     const fetchReviewsData = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/reviews/all");
-        if (!response.ok) {
-          throw new Error("Failed to fetch reviews.");
-        }
         const data = await response.json();
         setReviews(data);
         setFilteredReviews(data);
@@ -100,7 +100,6 @@ const ManageReviews = () => {
         setLoading(false);
       }
     };
-
     fetchReviewsData();
   }, []);
 
@@ -167,14 +166,12 @@ const ManageReviews = () => {
     try {
       const response = await fetch(
         `http://localhost:3000/api/reviews/delete/${selectedReview._id}`,
-        {
-          method: "DELETE",
-        }
+        { method: "DELETE" }
       );
 
       if (!response.ok) throw new Error("Failed to delete review.");
 
-      setReviews(reviews.filter((review) => review._id !== selectedReview._id));
+      setReviews(reviews.filter((r) => r._id !== selectedReview._id));
       toast.success("Review deleted successfully!");
       closeModal();
     } catch (error) {
@@ -185,11 +182,11 @@ const ManageReviews = () => {
 
   return (
     <AdminLayout>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-right" />
       <div className="px-6 py-4 bg-white min-h-screen w-full">
         <h1 className="text-2xl font-bold mb-6">Manage Reviews</h1>
 
-        {/* Search & Filters */}
+        {/* Search & Filter */}
         <div className="flex flex-wrap gap-4 mb-6">
           <input
             type="text"
@@ -233,13 +230,13 @@ const ManageReviews = () => {
           <div className="flex gap-2">
             <button
               onClick={downloadCSVReport}
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
             >
               Download CSV
             </button>
             <button
               onClick={downloadPDFReport}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
               Download PDF
             </button>
@@ -248,93 +245,65 @@ const ManageReviews = () => {
 
         {/* Table */}
         {loading ? (
-          <div className="text-center py-10">
-            <p className="text-gray-500">Loading reviews...</p>
-          </div>
+          <div className="text-center py-10 text-gray-500">Loading reviews...</div>
         ) : (
           <div className="w-full bg-white shadow-md rounded-lg overflow-hidden">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-lg font-bold">Recent Reviews</h2>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Product Name
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-100">
+                <tr>
+                  {["Product Name", "Category", "Title", "Rating", "Status", "Date", "Actions"].map((th) => (
+                    <th
+                      key={th}
+                      className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider"
+                    >
+                      {th}
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Category
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Title
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Rating
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Status
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Date
-                    </th>
-                    <th className="px-6 py-3 text-center text-xs font-medium text-gray-600 uppercase tracking-wider">
-                      Actions
-                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {currentReviews.map((review) => (
+                  <tr key={review._id} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 text-sm text-gray-800">{review.product_name}</td>
+                    <td className="px-6 py-4 text-sm text-gray-600">{review.product_type}</td>
+                    <td className="px-6 py-4 text-sm text-gray-600">{review.title}</td>
+                    <td className="px-6 py-4 text-sm text-gray-600">{review.rating} ★</td>
+                    <td className="px-6 py-4">
+                      <span
+                        className={`px-2 inline-flex text-xs font-semibold rounded-full ${
+                          review.status === "solved"
+                            ? "bg-green-100 text-green-800"
+                            : review.status === "pending"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-blue-100 text-blue-800"
+                        }`}
+                      >
+                        {review.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-600">
+                      {new Date(review.date).toLocaleDateString()}
+                    </td>
+                    <td className="px-6 py-4 flex justify-center gap-4">
+                      <button
+                        onClick={() => navigate(`/admin/edit-review/${review._id}`)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        <AiOutlineEdit size={20} />
+                      </button>
+                      <button
+                        onClick={() => openDeleteModal(review)}
+                        className="text-red-600 hover:text-red-800"
+                      >
+                        <AiOutlineDelete size={20} />
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {currentReviews.length > 0 ? (
-                    currentReviews.map((review) => (
-                      <tr key={review._id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm text-gray-800">{review.product_name}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">{review.product_type}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">{review.title}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">{review.rating} ★</td>
-                        <td className="px-6 py-4">
-                          <span
-                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                              review.status === "solved"
-                                ? "bg-green-100 text-green-800"
-                                : review.status === "pending"
-                                ? "bg-yellow-100 text-yellow-800"
-                                : "bg-blue-100 text-blue-800"
-                            }`}
-                          >
-                            {review.status}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-600">
-                          {new Date(review.date).toLocaleDateString()}
-                        </td>
-                        <td className="px-6 py-4 flex justify-center gap-4">
-                          <button
-                            onClick={() => navigate(`/admin/edit-review/${review._id}`)}
-                            className="text-blue-600 hover:text-blue-800"
-                          >
-                            <AiOutlineEdit size={20} />
-                          </button>
-                          <button
-                            onClick={() => openDeleteModal(review)}
-                            className="text-red-600 hover:text-red-800"
-                          >
-                            <AiOutlineDelete size={20} />
-                          </button>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={7} className="px-6 py-4 text-center text-gray-500">
-                        No reviews found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
 
-            {/* Pagination Controls */}
+            {/* Pagination */}
             <div className="flex justify-between items-center p-4 border-t border-gray-200">
               <button
                 onClick={handlePreviousPage}
