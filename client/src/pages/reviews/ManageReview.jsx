@@ -4,6 +4,9 @@ import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { Dialog, Transition } from "@headlessui/react";
 import toast, { Toaster } from "react-hot-toast";
 import AdminLayout from "../../components/admin/AdminLayout";
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
 
 const ManageReviews = () => {
   const [loading, setLoading] = useState(true);
@@ -26,7 +29,7 @@ const ManageReviews = () => {
       toast.error("No reviews to download.");
       return;
     }
-  
+
     const headers = ["Product Name", "Category", "Title", "Rating", "Status", "Date"];
     const rows = filteredReviews.map((review) => [
       `"${review.product_name}"`,
@@ -36,13 +39,13 @@ const ManageReviews = () => {
       review.status,
       new Date(review.date).toLocaleDateString(),
     ]);
-  
+
     const csvContent =
       "data:text/csv;charset=utf-8," +
       [headers, ...rows]
         .map((row) => row.join(","))
         .join("\n");
-  
+
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -51,7 +54,35 @@ const ManageReviews = () => {
     link.click();
     document.body.removeChild(link);
   };
-  
+
+  const downloadPDFReport = () => {
+    if (!filteredReviews.length) {
+      toast.error("No reviews to download.");
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.text("Reviews Report", 14, 15);
+
+    const tableColumn = ["Product", "Category", "Title", "Rating", "Status", "Date"];
+    const tableRows = filteredReviews.map((review) => [
+      review.product_name,
+      review.product_type,
+      review.title,
+      review.rating,
+      review.status,
+      new Date(review.date).toLocaleDateString(),
+    ]);
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20,
+      styles: { fontSize: 10 },
+    });
+
+    doc.save("reviews_report.pdf");
+  };
 
   useEffect(() => {
     const fetchReviewsData = async () => {
@@ -75,7 +106,7 @@ const ManageReviews = () => {
 
   useEffect(() => {
     let updated = reviews;
-  
+
     if (searchTerm) {
       updated = updated.filter((review) =>
         Object.values({
@@ -90,22 +121,22 @@ const ManageReviews = () => {
           .includes(searchTerm.toLowerCase())
       );
     }
-  
+
     if (statusFilter) {
       updated = updated.filter((review) => review.status === statusFilter);
     }
-  
+
     if (categoryFilter) {
       updated = updated.filter((review) => review.product_type === categoryFilter);
     }
-  
+
     if (ratingFilter) {
       updated = updated.filter((review) => String(review.rating) === ratingFilter);
     }
-  
+
     setFilteredReviews(updated);
     setCurrentPage(1);
-  }, [searchTerm, statusFilter, categoryFilter, ratingFilter, reviews]);  
+  }, [searchTerm, statusFilter, categoryFilter, ratingFilter, reviews]);
 
   const indexOfLastReview = currentPage * reviewsPerPage;
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
@@ -134,9 +165,12 @@ const ManageReviews = () => {
     if (!selectedReview) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/reviews/delete/${selectedReview._id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/reviews/delete/${selectedReview._id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to delete review.");
 
@@ -196,14 +230,23 @@ const ManageReviews = () => {
             ))}
           </select>
 
-          <button
-            onClick={downloadCSVReport}
-            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
-          >
-            Download Report
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={downloadCSVReport}
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
+            >
+              Download CSV
+            </button>
+            <button
+              onClick={downloadPDFReport}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Download PDF
+            </button>
+          </div>
         </div>
 
+        {/* Table */}
         {loading ? (
           <div className="text-center py-10">
             <p className="text-gray-500">Loading reviews...</p>
