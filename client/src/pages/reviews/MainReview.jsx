@@ -98,7 +98,6 @@ const MainReview = () => {
         }
         return stars;
     };
-
     return (
         <div className='mt-4 px-4 pt-10'>
             <div className='flex justify-between items-start mb-8'>
