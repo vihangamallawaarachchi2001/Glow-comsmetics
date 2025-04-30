@@ -263,7 +263,6 @@ const MainReview = () => {
                         </button>
                     </div>
                 )}
-
                 <div className='mt-4'>
                     <NewsLetter />
                 </div>

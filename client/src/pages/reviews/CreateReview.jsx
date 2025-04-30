@@ -25,7 +25,6 @@ const CreateReview = () => {
     const titleRegex = /^[a-zA-Z0-9\s]+$/; // Only letters, numbers & spaces allowed
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/; // Validate URLs
 
-    
     // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
