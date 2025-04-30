@@ -16,9 +16,7 @@ const EditReview = () => {
     product_type: "",
     rating: 0,
     status: "pending",
-    images_path: [],
-    date: "",
-    user_id: "",
+    images_path: []
   });
 
   useEffect(() => {
@@ -28,15 +26,13 @@ const EditReview = () => {
         if (!res.ok) throw new Error("Failed to fetch review");
         const data = await res.json();
         setFormData({
-          title: data.title,
-          description: data.description,
-          product_name: data.product_name,
-          product_type: data.product_type,
-          rating: data.rating,
-          status: data.status,
-          images_path: data.images_path || [],
-          date: data.date || "",
-          user_id: data.user_id || "",
+          title: data.title || "",
+          description: data.description || "",
+          product_name: data.product_name || "",
+          product_type: data.product_type || "",
+          rating: data.rating || 0,
+          status: data.status || "pending",
+          images_path: data.images_path || []
         });
         setLoading(false);
       } catch (error) {
@@ -60,7 +56,7 @@ const EditReview = () => {
       const res = await fetch(`http://localhost:3000/api/reviews/update/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
       if (!res.ok) throw new Error("Update failed");
@@ -203,18 +199,6 @@ const EditReview = () => {
               </div>
             </div>
           )}
-
-          {/* Read-only Fields 
-          <div className="">
-              <label className="block text-sm font-medium">Submitted On</label>
-              <input
-                type="text"
-                value={new Date(formData.date).toLocaleString()}
-                disabled
-                className="w-full mt-1 px-3 py-2 border rounded bg-gray-100"
-              />
-          </div>
-          */}
 
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-4">

@@ -3,11 +3,6 @@ const mongoose = require('mongoose');
 // Define the review schema
 const reviewSchema = new mongoose.Schema(
   {
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', 
-        required: false,
-    },
     product_name: { 
         type: String, 
         required: true 

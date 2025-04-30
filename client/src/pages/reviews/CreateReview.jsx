@@ -7,7 +7,6 @@ const CreateReview = () => {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        user_id: "65f0b6d2c4f5b84111111111",
         product_name: "",
         product_type: "",
         title: "",
