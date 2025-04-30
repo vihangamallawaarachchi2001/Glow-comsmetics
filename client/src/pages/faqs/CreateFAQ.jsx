@@ -95,6 +95,7 @@ const CreateFAQ = () => {
                         ))}
                     </select>
                 </div>
+                
                 {/* Question */}
                 <div>
                     <label className="block mb-2 font-medium text-gray-700">Your Question</label>
