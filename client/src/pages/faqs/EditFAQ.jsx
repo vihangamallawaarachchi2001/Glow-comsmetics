@@ -171,7 +171,6 @@ const EditFAQ = () => {
           </div>
 
           {/* Buttons */}
-          
           <div className="flex justify-end gap-4 pt-4">
             <motion.button
               type="button"
