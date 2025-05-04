@@ -2,6 +2,7 @@ const Order = require('../models/Order.js');
 const Product = require('../models/Product.js');
 const User = require('../models/User.js');
 const webPush  = require('web-push');
+const { sendEmail } = require('./emailService.js');
 
 // Create a new product
 const createProduct = async (productData) => {
@@ -56,6 +57,33 @@ const deleteProductById = async (id) => {
   }
 };
 
+const sendFlashSaleNotification = async (product) => {
+  const users = await User.find(); // Get all users
+  const subject = `🔥 Flash Sale Alert: ${product.name} is Now on Discount!`;
+  const message = `
+      Hey there!
+
+      We noticed we have too much stock of "${product.name}" — so we're launching a flash sale just for you!
+
+      Hurry up and grab it at a special discounted price before it's gone.
+
+      Thanks,
+      Your Beauty Store Team
+  `;
+
+  for (const user of users) {
+      await sendEmail({
+          to: user.email,
+          subject,
+          text: message
+      });
+  }
+
+ 
+
+  console.log(`📢 Flash sale for ${product.name} notified to ${users.length} users`);
+};
+
 const adjustProductPricing = async () => {
     const alpha = 0.2; // Change rate
     const lowSalesThreshold = 5; // If sold less than 5 in two weeks, decrease price
@@ -67,6 +95,14 @@ const adjustProductPricing = async () => {
         const currentStock = product.stock;
         const originalPrice = product.price;
         let newPrice = originalPrice;
+
+        const highStockThreshold = criticalLimit * 5;
+
+        // 💡 Check if stock is very high → Trigger flash sale
+        if (currentStock >= highStockThreshold) {
+          //TODO: Implement flash sale logic
+            //await sendFlashSaleNotification(product);
+        }
 
         // Check if stock is critically low
         if (currentStock <= criticalLimit) {

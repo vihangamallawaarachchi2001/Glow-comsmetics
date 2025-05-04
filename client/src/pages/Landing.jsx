@@ -135,7 +135,7 @@ function Landing() {
           <Hero />
         </motion.div>
 
-        {/* <TrendingItems /> */}
+         <TrendingItems /> 
 
         <TopSellingItems />
 

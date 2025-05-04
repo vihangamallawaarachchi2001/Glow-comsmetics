@@ -23,6 +23,8 @@ import Payment from "./pages/Payment";
 import OrderSuccess from "./pages/OrderSuccess";
 import Test from "./pages/test";
 
+
+
 // Admin Pages
 import Dashboard from "./pages/admin/Dashboard";
 
@@ -37,6 +39,8 @@ import ManageReview from "./pages/reviews/ManageReview";
 import EditReview from "./pages/reviews/EditReview";
 import ManageFAQ from "./pages/faqs/ManageFAQ";
 import EditFAQ from "./pages/faqs/EditFAQ";
+import Users from "./pages/admin/Users";
+import AdminProducts from "./pages/admin/Products";
 
 const AppLayout = () => {
   const location = useLocation();
@@ -57,13 +61,15 @@ const AppLayout = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/product" element={<SingleProduct />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/test" element={<Test />} />
 
         {/* Admin Route */}
         <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/users" element={<Users />} />
+        <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/manage-reviews" element={<ManageReview />} />
         <Route path='/admin/manage-faqs' element={<ManageFAQ />} />
         <Route path="/admin/answer-faq/:id" element={<EditFAQ />} />
@@ -165,65 +171,65 @@ export default App;
 //   }
 // }
 
-//function App() {
-  // const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
+// function App() {
+//   const [user, setUser] = useState(null);
+//   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-    // Check if user is logged in
-  //   const checkUserStatus = async () => {
-  //     try {
-  //       const token = localStorage.getItem("token");
-  //       if (token) {
-  //         const response = await fetch("http://localhost:3000/api/users", {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         });
+//   useEffect(() => {
+//     Check if user is logged in
+//     const checkUserStatus = async () => {
+//       try {
+//         const token = localStorage.getItem("token");
+//         if (token) {
+//           const response = await fetch("http://localhost:3000/api/users", {
+//             headers: {
+//               Authorization: `Bearer ${token}`,
+//             },
+//           });
 
-  //         if (response.ok) {
-  //           const userData = await response.json();
-  //           setUser(userData);
-  //         } else {
-  //           // Token invalid, remove it
-  //           localStorage.removeItem("token");
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error("Error checking user status:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+//           if (response.ok) {
+//             const userData = await response.json();
+//             setUser(userData);
+//           } else {
+//             // Token invalid, remove it
+//             localStorage.removeItem("token");
+//           }
+//         }
+//       } catch (error) {
+//         console.error("Error checking user status:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
 
-  //   checkUserStatus();
-  // }, []);
+//     checkUserStatus();
+//   }, []);
 
-  // useEffect(() => {
-  //   //unsubscribeNotification();
-  //   requestPermission();
-  // }, []);
+//   useEffect(() => {
+//     //unsubscribeNotification();
+//     requestPermission();
+//   }, []);
 
-  //return (
-  //  <Router>
-   //   <Routes>
-   //     <Route element={<Landing />} path="/"/>
-   //     <Route element={<About />} path="/about"/>
-    //    <Route element={<Contact />} path="/contact"/>
-    //    <Route element={<Login />} path="/login"/>
-  //      <Route element={<Signup />} path="/signup"/>
-  //      <Route element={<Products />} path="/products"/>
-  //      <Route element={<Profile />} path="/profile"/>
- //       <Route element={<Cart />} path="/cart"/>
- //       <Route element={<Checkout />} path="/checkout"/>
-  //      <Route element={<SingleProduct />} path="/product"/>
- //       <Route element={<Payment />} path="/payment"/>
- //       <Route element={<OrderSuccess />} path="/order-success"/>
- //       <Route element={<Dashboard />} path="/admin"/>
+//   return (
+//    <Router>
+//      <Routes>
+//        <Route element={<Landing />} path="/"/>
+//        <Route element={<About />} path="/about"/>
+//        <Route element={<Contact />} path="/contact"/>
+//        <Route element={<Login />} path="/login"/>
+//        <Route element={<Signup />} path="/signup"/>
+//        <Route element={<Products />} path="/products"/>
+//        <Route element={<Profile />} path="/profile"/>
+//        <Route element={<Cart />} path="/cart"/>
+//        <Route element={<Checkout />} path="/checkout"/>
+//        <Route element={<SingleProduct />} path="/product"/>
+//        <Route element={<Payment />} path="/payment"/>
+//        <Route element={<OrderSuccess />} path="/order-success"/>
+//        <Route element={<Dashboard />} path="/admin"/>
 //        <Route element={<Test />} path="/test"/>
 //      </Routes>
 //    </Router>
 //  );
-//}
+// }
 
-//export default App;
+// export default App;

@@ -59,8 +59,8 @@ console.log("Recommendations API response:", response.data.recommendations);
             })
         );
 
-        const results = await Promise.allSettled(productRequests);
-        setRecommendations(results.map((result) => result.value));
+        const results = response.data.recommendations
+        setRecommendations(results);
       } catch (error) {
         console.error("Error fetching recommendations:", error);
         setError(error.message);
